@@ -5,11 +5,18 @@ const App = () => {
   const [tarea, setTarea] = useState("");
   const [lista, setLista] = useState([]);
 
-  // Agregar tarea con Enter
-  const añadirTarea = (e) => {
-    if (e.key === "Enter" && tarea.trim() !== "") {
+  // Agregar tarea
+  const añadirTarea = () => {
+    if (tarea.trim() !== "") {
       setLista([...lista, tarea]);
       setTarea("");
+    }
+  };
+
+  // Manejar Enter
+  const manejarEnter = (e) => {
+    if (e.key === "Enter") {
+      añadirTarea();
     }
   };
 
@@ -29,8 +36,10 @@ const App = () => {
           placeholder="What needs to be done?"
           value={tarea}
           onChange={(e) => setTarea(e.target.value)}
-          onKeyDown={añadirTarea}
+          onKeyDown={manejarEnter} // <-- corregido aquí
         />
+
+        <button className="add-btn" onClick={añadirTarea}>+</button>
 
         <ul className="todo-list">
           {/* Si no hay tareas */}
@@ -59,4 +68,4 @@ const App = () => {
   );
 };
 
-export default App;
+expor
